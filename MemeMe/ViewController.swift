@@ -45,18 +45,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size:40)!,
             NSStrokeWidthAttributeName: -3.0]
         
-        topText.defaultTextAttributes = memeTextAttributes
-        topText.textAlignment = .center
-        topText.isUserInteractionEnabled = true
-        topText.delegate = self
+        self.configureTextfield(textField: topText, defaultAttributes: memeTextAttributes)
         
-        bottomText.defaultTextAttributes = memeTextAttributes
-        bottomText.textAlignment = .center
-        bottomText.isUserInteractionEnabled = true
-        bottomText.delegate = self
+        self.configureTextfield(textField: bottomText, defaultAttributes: memeTextAttributes)
+        
         
     }
     
+    //Mark: configure the textfields
+    func configureTextfield(textField: UITextField, defaultAttributes: [String:Any]){
+        textField.defaultTextAttributes = defaultAttributes
+        textField.textAlignment = .center
+        textField.isUserInteractionEnabled = true
+        textField.delegate = self
+    }
     
 
     override func viewWillAppear(_ animated: Bool) {
@@ -75,20 +77,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Mark: pick an image from the camera
     @IBAction func pickFromCamera(_ sender: Any) {
         
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .camera
-        self.present(pickerController, animated:true, completion:nil)
+        self.pickImage(sourceType: .camera)
         
     }
     
     // Mark: pick an image from the photo album
     @IBAction func pickFromAlbum(_ sender: Any) {
+        self.pickImage(sourceType: .photoLibrary)
         
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        self.present(pickerController, animated: true, completion:nil)
         
     }
     
@@ -102,6 +98,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         }
         
+    }
+    
+    //Mark: pick an image from sourceType
+    func pickImage(sourceType: UIImagePickerControllerSourceType){
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = sourceType
+        self.present(pickerController, animated: true, completion:nil)
     }
     
     //Mark: dismiss the image picker controller
@@ -153,12 +157,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //Mark: called when the keyboard shows
     func keyboardWillShow(notification: NSNotification){
-        self.view.frame.origin.y -= getKeyboardHeight(notification: notification)
+        self.view.frame.origin.y = -getKeyboardHeight(notification: notification)
     }
     
     //Mark: called when the keyboard hides
     func keyboardWillHide(notification: NSNotification){
-        self.view.frame.origin.y += getKeyboardHeight(notification: notification)
+        self.view.frame.origin.y = 0
     }
     
     //Mark: get the height of the keyboard - will return zero if the activeTextfield is not the bottom textfield
@@ -254,9 +258,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let actionController = UIActivityViewController(activityItems:[memedImage], applicationActivities: nil)
         
         actionController.completionWithItemsHandler = {
-            (s, ok, items, err) -> Void in
+            (_, successful, _, _) -> Void in
             
-            self.save(memedImage: memedImage)
+            if successful{
+                self.save(memedImage: memedImage)
+            }
+            
         }
         
         self.present(actionController, animated: true, completion:nil)
