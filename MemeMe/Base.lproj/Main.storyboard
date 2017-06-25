@@ -46,18 +46,8 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="JQx-iH-3bQ"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Top" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sEp-X6-kvS">
-                                <rect key="frame" x="16" y="99" width="343" height="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="beginTopText:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="mVw-Nb-coB"/>
-                                    <action selector="endTopText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="1Sa-p7-job"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNO-eR-Xl2">
-                                <rect key="frame" x="16" y="558" width="343" height="17"/>
+                                <rect key="frame" x="16" y="586" width="343" height="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -79,18 +69,28 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Top" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sEp-X6-kvS">
+                                <rect key="frame" x="16" y="62" width="343" height="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <action selector="beginTopText:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="mVw-Nb-coB"/>
+                                    <action selector="endTopText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="1Sa-p7-job"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sEp-X6-kvS" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="9OI-qV-JUi"/>
-                            <constraint firstItem="sEp-X6-kvS" firstAttribute="top" secondItem="ZJL-Yx-tbC" secondAttribute="bottom" constant="55" id="FHU-dx-psq"/>
+                            <constraint firstItem="sEp-X6-kvS" firstAttribute="top" secondItem="ZJL-Yx-tbC" secondAttribute="bottom" constant="18" id="FHU-dx-psq"/>
                             <constraint firstItem="MNO-eR-Xl2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FMt-gK-slC"/>
                             <constraint firstItem="sEp-X6-kvS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="GZS-rF-5yb"/>
                             <constraint firstItem="MNO-eR-Xl2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="S0Z-lT-0nk"/>
                             <constraint firstItem="QCG-ZC-L8f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="T0f-Ar-MMf"/>
                             <constraint firstItem="ZJL-Yx-tbC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TCP-cY-eDY"/>
                             <constraint firstItem="ZJL-Yx-tbC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TRo-R0-vDM"/>
-                            <constraint firstItem="tMq-vB-Rjp" firstAttribute="top" secondItem="MNO-eR-Xl2" secondAttribute="bottom" constant="48" id="Vi3-97-5x0"/>
+                            <constraint firstItem="tMq-vB-Rjp" firstAttribute="top" secondItem="MNO-eR-Xl2" secondAttribute="bottom" constant="20" id="Vi3-97-5x0"/>
                             <constraint firstItem="QCG-ZC-L8f" firstAttribute="top" secondItem="ZJL-Yx-tbC" secondAttribute="bottom" id="Yq7-bX-Cfo"/>
                             <constraint firstItem="tMq-vB-Rjp" firstAttribute="top" secondItem="QCG-ZC-L8f" secondAttribute="bottom" id="cdD-ty-QEq"/>
                             <constraint firstItem="QCG-ZC-L8f" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="dwV-0B-08I"/>
