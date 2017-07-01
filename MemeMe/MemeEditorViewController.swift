@@ -9,16 +9,7 @@
 import UIKit
 
 
-struct Meme{
-    var topText: String
-    var bottomText: String
-    var originalImage: UIImage
-    var memedImage: UIImage
-}
-
-
-
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     
@@ -143,9 +134,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //Mar: setup the keyboard hide/show subscriptions
     func subscribeToKeyboardNotification(){
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object:nil)
     }
     
     //Mark: remove the keyboard hide/show subscriptions
@@ -247,6 +238,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //Mark: save the meme
     func save(memedImage: UIImage){
         let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        appDelegate.memes.append(meme)
     }
     
     
@@ -262,6 +256,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             if successful{
                 self.save(memedImage: memedImage)
+                self.dismiss(animated: true, completion: nil)
             }
             
         }
@@ -272,6 +267,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    //Mark: cancel the creation of the meme and return to the previous screen
+    @IBAction func cancelMeme(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }
 
